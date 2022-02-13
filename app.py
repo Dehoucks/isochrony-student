@@ -1,13 +1,10 @@
-from cv2 import DFT_ROWS
 import dash
 from dash import html
 import pandas as pd
-import base64
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 import utils
 from datetime import datetime
-import datetime
 from dash_table import DataTable
 
 df = pd.DataFrame()
@@ -15,9 +12,6 @@ list_press = []
 list_time = []
 list_p = []
 list_t = []
-
-image_filename1 = 'assets/green-buz.png' # replace with your own image
-encoded_image1 = base64.b64encode(open(image_filename1, 'rb').read())
 
 card = html.Div(children = [
     dbc.Card(
