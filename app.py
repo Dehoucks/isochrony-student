@@ -1,9 +1,6 @@
-import time
 from cv2 import DFT_ROWS
 import dash
-import dash_core_components as dcc
 from dash import html
-from dash import Dash, dash_table
 import pandas as pd
 import base64
 from dash.dependencies import Input, Output
@@ -11,7 +8,6 @@ import dash_bootstrap_components as dbc
 import utils
 from datetime import datetime
 import datetime
-import plotly.express as px
 from dash_table import DataTable
 
 df = pd.DataFrame()
