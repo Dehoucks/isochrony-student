@@ -1,11 +1,12 @@
 import dash
 from dash import html
 import pandas as pd
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 import utils
 from datetime import datetime
 from dash_table import DataTable
+import datetime
 
 df = pd.DataFrame()
 list_press = []
@@ -101,6 +102,14 @@ app.layout = html.Div(
         ], style={'textAlign': 'center'}),
         html.Div(children = card, id = "table", style = {'margin-top' : '10px'}),
         html.Div(dbc.Button('Résultats', id = "button", color="info", className="me-1")),
+        html.Div(dbc.Modal(
+            [
+                dbc.ModalHeader(dbc.ModalTitle("Attention")),
+                dbc.ModalBody("Veuillez terminer toutes les épreuves pour obtenir les résultats."),
+            ],
+            id="modal",
+            is_open=False,
+        )),
         html.Div(dbc.Button('Recommencer', id = "button_reset", color="warning", className="me-1")),
         html.Div(DataTable(id = "result", data = [])),
         
@@ -387,6 +396,15 @@ def reset(n_clicks):
         list_time.clear()
         return (0)
 
+@app.callback(
+    Output("modal", "is_open"),
+    [Input("button", "n_clicks")],
+    [State("modal", "is_open")],
+)
+def toggle_modal(n1, is_open):
+    if n1 and len(list_time) < 50:
+        return True
+    return False
 
 if __name__ == "__main__":
     app.run_server(debug=False)
