@@ -9,16 +9,21 @@ from dash_table import DataTable
 import datetime
 
 df = pd.DataFrame()
+dfprime = pd.DataFrame()
 list_press = []
 list_time = []
 list_p = []
 list_t = []
+list_pressprime = []
+list_timeprime = []
+list_pprime = []
+list_tprime = []
 
 card = html.Div(children = [
     dbc.Card(
         dbc.ListGroup(
             [
-                html.H5("Epreuve 1", className="mb-1"),
+                html.H5("Assis debout", className="mb-1"),
                 dbc.ListGroupItem("Etape 1", id = '1'),
                 dbc.ListGroupItem("Etape 2", id = '2'),
                 dbc.ListGroupItem("Etape 3", id = '3'),
@@ -27,12 +32,12 @@ card = html.Div(children = [
             ],
             flush=True,
         ),
-        style={"width": "18rem", 'background-color' : 'CadetBlue', 'width': '20%', 'display': 'inline-block', 'textAlign' : 'center'},
+        style={"width": "18rem", 'background-color' : 'CadetBlue', 'width': '16%', 'display': 'inline-block', 'textAlign' : 'center'},
     ),
     dbc.Card(
         dbc.ListGroup(
             [
-                html.H5("Epreuve 2", className="mb-1"),
+                html.H5("Marche vers une cible", className="mb-1"),
                 dbc.ListGroupItem("Etape 1", id = '6'),
                 dbc.ListGroupItem("Etape 2", id = '7'),
                 dbc.ListGroupItem("Etape 3", id = '8'),
@@ -41,12 +46,12 @@ card = html.Div(children = [
             ],
             flush=True,
         ),
-    style={"width": "18rem", 'background-color' : 'CadetBlue', 'width': '20%', 'display': 'inline-block', 'textAlign' : 'center'},
+    style={"width": "18rem", 'background-color' : 'CadetBlue', 'width': '16%', 'display': 'inline-block', 'textAlign' : 'center'},
 ),
     dbc.Card(
         dbc.ListGroup(
             [
-                html.H5("Epreuve 3", className="mb-1"),
+                html.H5("Marche talon pointe", className="mb-1"),
                 dbc.ListGroupItem("Etape 1", id = '11'),
                 dbc.ListGroupItem("Etape 2", id = '12'),
                 dbc.ListGroupItem("Etape 3", id = '13'),
@@ -55,12 +60,12 @@ card = html.Div(children = [
             ],
             flush=True,
         ),
-    style={"width": "18rem", 'background-color' : 'CadetBlue', 'width': '20%', 'display': 'inline-block', 'textAlign' : 'center'},
+    style={"width": "18rem", 'background-color' : 'CadetBlue', 'width': '16%', 'display': 'inline-block', 'textAlign' : 'center'},
 ),
     dbc.Card(
         dbc.ListGroup(
             [
-                html.H5("Epreuve 4", className="mb-1"),
+                html.H5("Marche panneaux vichy", className="mb-1"),
                 dbc.ListGroupItem("Etape 1", id = '16'),
                 dbc.ListGroupItem("Etape 2", id = '17'),
                 dbc.ListGroupItem("Etape 3", id = '18'),
@@ -69,12 +74,12 @@ card = html.Div(children = [
             ],
             flush=True,
         ),
-    style={"width": "18rem", 'background-color' : 'CadetBlue', 'width': '20%', 'display': 'inline-block', 'textAlign' : 'center'},
+    style={"width": "18rem", 'background-color' : 'CadetBlue', 'width': '16%', 'display': 'inline-block', 'textAlign' : 'center'},
 ),
     dbc.Card(
         dbc.ListGroup(
             [
-                html.H5("Epreuve 5", className="mb-1"),
+                html.H5("Ramassage cubes", className="mb-1"),
                 dbc.ListGroupItem("Etape 1", id = '21'),
                 dbc.ListGroupItem("Etape 2", id = '22'),
                 dbc.ListGroupItem("Etape 3", id = '23'),
@@ -83,9 +88,110 @@ card = html.Div(children = [
             ],
             flush=True,
         ),
-    style={"width": "18rem", 'background-color' : 'CadetBlue', 'width': '20%', 'display': 'inline-block', 'textAlign' : 'center'},
+    style={"width": "18rem", 'background-color' : 'CadetBlue', 'width': '16%', 'display': 'inline-block', 'textAlign' : 'center'},
+),
+    dbc.Card(
+        dbc.ListGroup(
+            [
+                html.H5("Dessin", className="mb-1"),
+                dbc.ListGroupItem("Etape 1", id = '26'),
+                dbc.ListGroupItem("Etape 2", id = '27'),
+                dbc.ListGroupItem("Etape 3", id = '28'),
+                dbc.ListGroupItem("Etape 4", id = '29'),
+                dbc.ListGroupItem("Etape 5", id = '30'),
+            ],
+            flush=True,
+        ),
+    style={"width": "18rem", 'background-color' : 'CadetBlue', 'width': '16%', 'display': 'inline-block', 'textAlign' : 'center'},
 )
-], id = "step_card")
+], id = "step_card", style = {'textAlign' : 'center'})
+
+card2 = html.Div(children = [
+    dbc.Card(
+        dbc.ListGroup(
+            [
+                html.H5("Assis debout[I]", className="mb-1"),
+                dbc.ListGroupItem("Etape 1", id = '1prime'),
+                dbc.ListGroupItem("Etape 2", id = '2prime'),
+                dbc.ListGroupItem("Etape 3", id = '3prime'),
+                dbc.ListGroupItem("Etape 4", id = '4prime'),
+                dbc.ListGroupItem("Etape 5", id = '5prime'),
+            ],
+            flush=True,
+        ),
+        style={"width": "18rem", 'background-color' : 'CadetBlue', 'width': '16%', 'display': 'inline-block', 'textAlign' : 'center'},
+    ),
+    dbc.Card(
+        dbc.ListGroup(
+            [
+                html.H5("Marche vers une cible[I]", className="mb-1"),
+                dbc.ListGroupItem("Etape 1", id = '6prime'),
+                dbc.ListGroupItem("Etape 2", id = '7prime'),
+                dbc.ListGroupItem("Etape 3", id = '8prime'),
+                dbc.ListGroupItem("Etape 4", id = '9prime'),
+                dbc.ListGroupItem("Etape 5", id = '10prime'),
+            ],
+            flush=True,
+        ),
+    style={"width": "18rem", 'background-color' : 'CadetBlue', 'width': '16%', 'display': 'inline-block', 'textAlign' : 'center'},
+),
+    dbc.Card(
+        dbc.ListGroup(
+            [
+                html.H5("Marche talon pointe[I]", className="mb-1"),
+                dbc.ListGroupItem("Etape 1", id = '11prime'),
+                dbc.ListGroupItem("Etape 2", id = '12prime'),
+                dbc.ListGroupItem("Etape 3", id = '13prime'),
+                dbc.ListGroupItem("Etape 4", id = '14prime'),
+                dbc.ListGroupItem("Etape 5", id = '15prime'),
+            ],
+            flush=True,
+        ),
+    style={"width": "18rem", 'background-color' : 'CadetBlue', 'width': '16%', 'display': 'inline-block', 'textAlign' : 'center'},
+),
+    dbc.Card(
+        dbc.ListGroup(
+            [
+                html.H5("Marche panneaux vichy[I]", className="mb-1"),
+                dbc.ListGroupItem("Etape 1", id = '16prime'),
+                dbc.ListGroupItem("Etape 2", id = '17prime'),
+                dbc.ListGroupItem("Etape 3", id = '18prime'),
+                dbc.ListGroupItem("Etape 4", id = '19prime'),
+                dbc.ListGroupItem("Etape 5", id = '20prime'),
+            ],
+            flush=True,
+        ),
+    style={"width": "18rem", 'background-color' : 'CadetBlue', 'width': '16%', 'display': 'inline-block', 'textAlign' : 'center'},
+),
+    dbc.Card(
+        dbc.ListGroup(
+            [
+                html.H5("Ramassage cubes[I]", className="mb-1"),
+                dbc.ListGroupItem("Etape 1", id = '21prime'),
+                dbc.ListGroupItem("Etape 2", id = '22prime'),
+                dbc.ListGroupItem("Etape 3", id = '23prime'),
+                dbc.ListGroupItem("Etape 4", id = '24prime'),
+                dbc.ListGroupItem("Etape 5", id = '25prime'),
+            ],
+            flush=True,
+        ),
+    style={"width": "18rem", 'background-color' : 'CadetBlue', 'width': '16%', 'display': 'inline-block', 'textAlign' : 'center'},
+),
+    dbc.Card(
+        dbc.ListGroup(
+            [
+                html.H5("Dessin[I]", className="mb-1"),
+                dbc.ListGroupItem("Etape 1", id = '26prime'),
+                dbc.ListGroupItem("Etape 2", id = '27prime'),
+                dbc.ListGroupItem("Etape 3", id = '28prime'),
+                dbc.ListGroupItem("Etape 4", id = '29prime'),
+                dbc.ListGroupItem("Etape 5", id = '30prime'),
+            ],
+            flush=True,
+        ),
+    style={"width": "18rem", 'background-color' : 'CadetBlue', 'width': '16%', 'display': 'inline-block', 'textAlign' : 'center'},
+)
+], id = "step_cardprime", style = {'textAlign' : 'center'})
 
 app = dash.Dash(
     external_stylesheets=[dbc.themes.BOOTSTRAP]
@@ -101,18 +207,31 @@ app.layout = html.Div(
         html.Div(dbc.Button('Buzzer', size="lg", color="primary", className="me-1", id = "green")),
         ], style={'textAlign': 'center'}),
         html.Div(children = card, id = "table", style = {'margin-top' : '10px'}),
+        html.Div([html.P(id = "text_greenprime"),
+        html.Div(dbc.Button('Buzzer [I]', size="lg", color="primary", className="me-1", id = "greenprime")),
+        ], style={'textAlign': 'center'}),
+        html.Div(children = card2, id = "tableprime", style = {'margin-top' : '10px'}),
         html.Div(dbc.Button('Résultats', id = "button", color="info", className="me-1")),
+        html.Div(dbc.Button('Résultats [I]', id = "buttonprime", color="info", className="me-1")),
         html.Div(dbc.Modal(
             [
-                dbc.ModalHeader(dbc.ModalTitle("Attention")),
+                dbc.ModalHeader("Attention"),
                 dbc.ModalBody("Veuillez terminer toutes les épreuves pour obtenir les résultats."),
             ],
             id="modal",
             is_open=False,
         )),
+        html.Div(dbc.Modal(
+            [
+                dbc.ModalHeader("Attention [I]"),
+                dbc.ModalBody("Veuillez terminer toutes les épreuves pour obtenir les résultats."),
+            ],
+            id="modalprime",
+            is_open=False,
+        )),
         html.Div(dbc.Button('Recommencer', id = "button_reset", color="warning", className="me-1")),
-        html.Div(DataTable(id = "result", data = [])),
-        
+        html.Div(children = [DataTable(id = "result", data = [], export_format = 'xlsx')]),
+        html.Div(DataTable(id = "resultprime", data = [], export_format = 'xlsx')),
         ]
         , style = {'background' : 'CadetBlue'})
         
@@ -347,6 +466,318 @@ def update_output(n_clicks):
 def update_output(n_clicks):
     if len(list_time) >= 50:
         return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='26', component_property='style'),
+    Input(component_id='green', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_time) >= 52:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='27', component_property='style'),
+    Input(component_id='green', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_time) >= 54:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='28', component_property='style'),
+    Input(component_id='green', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_time) >= 56:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='29', component_property='style'),
+    Input(component_id='green', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_time) >= 58:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='30', component_property='style'),
+    Input(component_id='green', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_time) >= 60:
+        return {'background-color' : 'green'}
+        ##########################################################
+@app.callback(
+    Output(component_id='greenprime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if n_clicks % 2 != 0:
+        return {'height':'8%', 'width':'8%'}
+    else:
+        return {'height':'10%', 'width':'10%'}
+
+@app.callback(
+    Output(component_id='text_greenprime', component_property='children'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if n_clicks % 10 == 0 and n_clicks != 0:
+        return ("Epreuve terminée.")
+    if n_clicks % 2 != 0:
+        return ("Enregistrement en cours...")
+    else:
+        return ("Il n'y a pas d'enregistrement en cours.")
+
+@app.callback(
+    Output(component_id='1prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+
+def update_output(n_clicks):
+    if n_clicks != None and n_clicks != 0:
+        list_pprime, list_tprime = utils.step_timer(n_clicks, list_pressprime, list_timeprime)
+    if len(list_timeprime) >= 2:
+        return {'background-color' : 'green'}
+
+@app.callback(
+    Output(component_id='2prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 4:
+        return {'background-color' : 'green'}
+
+@app.callback(
+    Output(component_id='3prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 6:
+        return {'background-color' : 'green'}
+
+@app.callback(
+    Output(component_id='4prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 8:
+        return {'background-color' : 'green'}
+
+@app.callback(
+    Output(component_id='5prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 10:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='6prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 12:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='7prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 14:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='8prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 16:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='9prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 18:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='10prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 20:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='11prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 22:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='12prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 24:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='13prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 26:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='14prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 28:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='15prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 30:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='16prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 32:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='17prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 34:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='18prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 36:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='19prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 38:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='20prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 40:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='21prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 42:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='22prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 44:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='23prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 46:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='24prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 48:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='25prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 50:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='26prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 52:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='27prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 54:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='28prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 56:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='29prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 58:
+        return {'background-color' : 'green'}
+@app.callback(
+    Output(component_id='30prime', component_property='style'),
+    Input(component_id='greenprime', component_property='n_clicks')
+)
+
+def update_output(n_clicks):
+    if len(list_timeprime) >= 60:
+        return {'background-color' : 'green'}
     
 @app.callback(
     [Output("result", "data"), Output('result', 'columns')],
@@ -354,38 +785,65 @@ def update_output(n_clicks):
 )
 
 def table(n_clicks):
-    print('table nclicks = ', n_clicks)
+    # print('table nclicks = ', n_clicks)
     if n_clicks != None and n_clicks != 0:
         i = 0
         j = 0
         list_delta = []  
-        print('list time = ', len(list_time))
-        while j < 25:
+        # print('list time = ', len(list_time))
+        while j < 30:
             item1 = datetime.datetime.strptime(list_time[i], '%Y-%m-%d %H:%M:%S.%f')
             item2 = datetime.datetime.strptime(list_time[i+1], '%Y-%m-%d %H:%M:%S.%f')
             delta = (item2 - item1)
             list_delta.append(delta.total_seconds())
             j += 1
             i += 2
-        print('len delta = ',len(list_delta))
-        list_index = [1, 2, 3, 4, 5, 6]
+        # print('len delta = ',len(list_delta))
+        list_index = [1, 2, 3, 4, 5]
         df.index = list_index
-        list_delta.insert(5, sum(list_delta[0:5]))
-        list_delta.insert(11, sum(list_delta[6:11]))
-        list_delta.insert(17, sum(list_delta[12:17]))
-        list_delta.insert(23, sum(list_delta[18:23]))
-        list_delta.insert(29, sum(list_delta[24:29]))
-        df['Epreuve 1'] = list_delta[0:6]
-        df['Epreuve 2'] = list_delta[6:12]
-        df['Epreuve 3'] = list_delta[12:18]
-        df['Epreuve 4'] = list_delta[18:24]
-        df['Epreuve 5'] = list_delta[24:30]
+        df['Assis debout'] = list_delta[0:5]
+        df['Marche vers une cible'] = list_delta[5:10]
+        df['Marche talon pointe'] = list_delta[10:15]
+        df['Marche panneaux vichy'] = list_delta[15:20]
+        df['Ramassage cubes'] = list_delta[20:25]
+        df['Dessin'] = list_delta[25:30]
         print(df)
         return (df.to_dict('records'), [{"name": i, "id": i} for i in df.columns])
 
+@app.callback(
+    [Output("resultprime", "data"), Output('resultprime', 'columns')],
+    Input(component_id='buttonprime', component_property='n_clicks')
+)
+
+def table(n_clicks):
+    # print('table nclicks = ', n_clicks)
+    if n_clicks != None and n_clicks != 0:
+        i = 0
+        j = 0
+        list_delta = []  
+        # print('list time = ', len(list_time))
+        while j < 30:
+            item1 = datetime.datetime.strptime(list_timeprime[i], '%Y-%m-%d %H:%M:%S.%f')
+            item2 = datetime.datetime.strptime(list_timeprime[i+1], '%Y-%m-%d %H:%M:%S.%f')
+            delta = (item2 - item1)
+            list_delta.append(delta.total_seconds())
+            j += 1
+            i += 2
+        # print('len delta = ',len(list_delta))
+        list_index = [1, 2, 3, 4, 5]
+        dfprime.index = list_index
+        dfprime['[I]Assis debout'] = list_delta[0:5]
+        dfprime['[I]Marche vers une cible'] = list_delta[5:10]
+        dfprime['[I]Marche talon pointe'] = list_delta[10:15]
+        dfprime['[I]Marche panneaux vichy'] = list_delta[15:20]
+        dfprime['[I]Ramassage cubes'] = list_delta[20:25]
+        dfprime['[I]Dessin'] = list_delta[25:30]
+        print(dfprime)
+        return (dfprime.to_dict('records'), [{"name": i, "id": i} for i in dfprime.columns])
+
 
 @app.callback(
-    Output(component_id='green', component_property='n_clicks'),
+    Output(component_id='green', component_property='n_clicks'), Output(component_id='greenprime', component_property='n_clicks'),
     Input(component_id='button_reset', component_property='n_clicks')
 )
 
@@ -394,7 +852,9 @@ def reset(n_clicks):
     if n_clicks != None:
         list_t.clear()
         list_time.clear()
-        return (0)
+        list_tprime.clear()
+        list_timeprime.clear()
+        return (0,0)
 
 @app.callback(
     Output("modal", "is_open"),
@@ -406,5 +866,15 @@ def toggle_modal(n1, is_open):
         return True
     return False
 
+@app.callback(
+    Output("modalprime", "is_open"),
+    [Input("buttonprime", "n_clicks")],
+    [State("modalprime", "is_open")],
+)
+def toggle_modal(n1, is_open):
+    if n1 and len(list_timeprime) < 50:
+        return True
+    return False
+
 if __name__ == "__main__":
-    app.run_server(debug=False)
+    app.run_server(debug=True)
