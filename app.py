@@ -916,4 +916,4 @@ def toggle_modal(n1, is_open):
     return False
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run_server(debug=False)
