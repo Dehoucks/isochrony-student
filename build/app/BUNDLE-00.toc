@@ -1,3 +1,0 @@
-([('app',
-   '/Users/robindehouck/Documents/Betty-isochrony/isochrony-student/dist/app',
-   'EXECUTABLE')],)
